@@ -50,7 +50,7 @@ export const MainTable = ({
           <Pagination
             value={currentPage}
             onChange={setCurrentPage}
-            total={1280}
+            total={Math.ceil(data.count / 12)}
           />
         </Flex>
       )}

@@ -1,6 +1,7 @@
 import { Container, Flex, Image, Modal, Stack, Text } from "@mantine/core"
 import { usePokemonModalStore } from "../store/pokemonModal.store"
 import { shallow } from "zustand/shallow"
+import notFoundImg from "../assets/NotFoundImg.png"
 
 export const PokemonModal = () => {
   const { setIsActive, isActive, selectedPokemon } = usePokemonModalStore(
@@ -26,7 +27,7 @@ export const PokemonModal = () => {
       <Container>
         <Flex justify={"center"}>
           <Image
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${selectedPokemon?.id}.svg`}
+            src={selectedPokemon?.sprites.front_default ?? notFoundImg}
             alt={selectedPokemon?.name}
             width={200}
             height={"auto"}

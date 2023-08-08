@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { getAPokemon } from "../services/Pokemon"
 import { usePokemonModalStore } from "../store/pokemonModal.store"
 import { shallow } from "zustand/shallow"
+import notFoundImg from "../assets/NotFoundImg.png"
 
 interface Props {
   pokemonFromList?: SinglePokemon
@@ -53,7 +54,7 @@ export const PokemonCard = ({ pokemonFromList, pokemonFromSearch }: Props) => {
       >
         <Card.Section>
           <Image
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemonReceived?.id}.svg`}
+            src={pokemonReceived?.sprites.front_default ?? notFoundImg}
             alt={pokemonReceived?.name}
             className={classes.imageSection}
           />
