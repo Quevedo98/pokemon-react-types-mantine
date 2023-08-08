@@ -1,5 +1,7 @@
 import "./App.css"
 import { Container, Title, Grid, TextInput, Button } from "@mantine/core"
+import pokemonList from "./mockups/pokemonList.json"
+import { PokemonCard } from "./components/PokemonCard"
 
 function App() {
   return (
@@ -23,7 +25,13 @@ function App() {
               <Button variant="light">Search</Button>
             </Grid.Col>
           </Grid>
-          {/* <Grid></Grid> */}
+          <Grid gutter={30} mt={{ base: 50 }}>
+            {pokemonList.results.map((pokemon) => (
+              <Grid.Col xs={6} sm={4} md={3} key={pokemon.name}>
+                <PokemonCard pokemonFromList={pokemon} />
+              </Grid.Col>
+            ))}
+          </Grid>
         </main>
       </Container>
     </>
