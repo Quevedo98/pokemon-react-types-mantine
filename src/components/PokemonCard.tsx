@@ -3,6 +3,8 @@ import { SinglePokemon } from "../interfaces/types"
 import { Pokemon } from "../interfaces/pokemon-full"
 import { useEffect, useState } from "react"
 import { getAPokemon } from "../services/Pokemon"
+import { usePokemonModalStore } from "../store/pokemonModal.store"
+import { shallow } from "zustand/shallow"
 
 interface Props {
   pokemonFromList?: SinglePokemon
@@ -13,6 +15,16 @@ export const PokemonCard = ({ pokemonFromList, pokemonFromSearch }: Props) => {
   const { classes } = useStyles()
 
   const [pokemonReceived, setPokemonReceived] = useState<Pokemon>()
+
+  // modalStore
+  const { setIsActive, setSelectedPokemon } = usePokemonModalStore(
+    (state) => ({
+      setIsActive: state.setIsActive,
+      setSelectedPokemon: state.setSelectedPokemon,
+    }),
+    shallow
+  )
+
   useEffect(() => {
     if (pokemonFromList) {
       getAPokemon(pokemonFromList.url)
@@ -30,7 +42,15 @@ export const PokemonCard = ({ pokemonFromList, pokemonFromSearch }: Props) => {
 
   return (
     <>
-      <Card>
+      <Card
+        onClick={() => {
+          setIsActive(true)
+          setSelectedPokemon(pokemonReceived as Pokemon)
+        }}
+        className={classes.card}
+        shadow="md"
+        radius="md"
+      >
         <Card.Section>
           <Image
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemonReceived?.id}.svg`}
@@ -38,12 +58,13 @@ export const PokemonCard = ({ pokemonFromList, pokemonFromSearch }: Props) => {
             className={classes.imageSection}
           />
         </Card.Section>
-        <Group position="apart" mt="xl">
-          <Text fz="lg" fw={700} className={classes.title}>
-            {pokemonReceived?.name}
-          </Text>
-        </Group>
+
         <Card.Section className={classes.footer}>
+          <Group mt="xl">
+            <Text fz="lg" fw={700} className={classes.title}>
+              {pokemonReceived?.name}
+            </Text>
+          </Group>
           <Text>
             <Text span fw={700} inherit>
               Types:{" "}
@@ -64,10 +85,12 @@ export const PokemonCard = ({ pokemonFromList, pokemonFromSearch }: Props) => {
 //Styles
 const useStyles = createStyles((theme) => ({
   card: {
-    backgroundColor:
-      theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
+    minHeight: " 100%",
+    cursor: "pointer",
+    border: `${rem(1)} solid ${
+      theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[1]
+    }`,
   },
-
   footer: {
     display: "flex",
     flexDirection: "column",
@@ -85,14 +108,9 @@ const useStyles = createStyles((theme) => ({
     margin: "auto",
     padding: theme.spacing.md,
     display: "flex",
-    maxWidth: 200,
-    maxHeight: 200,
+    maxWidth: 140,
+    height: 200,
     alignItems: "center",
     justifyContent: "center",
-    objectFit: "cover",
-
-    borderBottom: `${rem(1)} solid ${
-      theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3]
-    }`,
   },
 }))

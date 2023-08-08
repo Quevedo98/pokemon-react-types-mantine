@@ -9,11 +9,7 @@ const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <MantineProvider
-      withGlobalStyles
-      withNormalizeCSS
-      theme={{ colorScheme: "dark" }}
-    >
+    <MantineProvider withGlobalStyles withNormalizeCSS theme={{}}>
       <QueryClientProvider client={queryClient}>
         <App />
       </QueryClientProvider>
