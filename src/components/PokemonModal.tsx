@@ -29,25 +29,26 @@ export const PokemonModal = () => {
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${selectedPokemon?.id}.svg`}
             alt={selectedPokemon?.name}
             width={200}
+            height={"auto"}
           />
         </Flex>
         <Stack spacing={6} mt={40}>
           <Text>
-            <Text span fw={700} c={"dark"}>
+            <Text span fw={700} c={"light"}>
               {" "}
               Id:{" "}
             </Text>
             {selectedPokemon.id}
           </Text>
           <Text>
-            <Text span fw={700} c={"dark"}>
+            <Text span fw={700} c={"light"}>
               {" "}
               Name:{" "}
             </Text>
             {selectedPokemon.name}
           </Text>
           <Text>
-            <Text span fw={700} c={"dark"}>
+            <Text span fw={700} c={"light"}>
               {" "}
               Abilities:{" "}
             </Text>
@@ -59,14 +60,14 @@ export const PokemonModal = () => {
             })}
           </Text>
           <Text>
-            <Text span fw={700} c={"dark"}>
+            <Text span fw={700} c={"light"}>
               {" "}
               Height:{" "}
             </Text>
             {selectedPokemon.height}
           </Text>
           <Text>
-            <Text span fw={700} c={"dark"}>
+            <Text span fw={700} c={"light"}>
               {" "}
               Order:{" "}
             </Text>

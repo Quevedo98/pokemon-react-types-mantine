@@ -43,7 +43,8 @@ export const MainTable = ({
           </>
         )}
       </Grid>
-      //Pagination component from Mantine
+
+      {/* Pagination component from Mantine */}
       {data && (
         <Flex justify={"center"} mb={{ base: 50 }}>
           <Pagination
