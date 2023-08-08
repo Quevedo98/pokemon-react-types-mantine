@@ -54,7 +54,7 @@ export const PokemonCard = ({ pokemonFromList, pokemonFromSearch }: Props) => {
       >
         <Card.Section>
           <Image
-            src={pokemonReceived?.sprites.front_default ?? notFoundImg}
+            src={pokemonReceived?.sprites?.front_default ?? notFoundImg}
             alt={pokemonReceived?.name}
             className={classes.imageSection}
           />

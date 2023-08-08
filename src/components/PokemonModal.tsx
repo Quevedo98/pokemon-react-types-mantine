@@ -27,7 +27,7 @@ export const PokemonModal = () => {
       <Container>
         <Flex justify={"center"}>
           <Image
-            src={selectedPokemon?.sprites.front_default ?? notFoundImg}
+            src={selectedPokemon?.sprites?.front_default ?? notFoundImg}
             alt={selectedPokemon?.name}
             width={200}
             height={"auto"}
