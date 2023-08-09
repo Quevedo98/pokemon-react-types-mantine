@@ -1,22 +1,13 @@
-import { Card, Image, Group, Text, createStyles, rem } from "@mantine/core"
+import { Card, Group, Text, createStyles, rem } from "@mantine/core"
 import { SinglePokemon } from "../interfaces/types"
-import { Pokemon } from "../interfaces/pokemon-full"
-import { useEffect, useState } from "react"
-import { getAPokemon } from "../services/Pokemon"
 import { usePokemonModalStore } from "../store/pokemonModal.store"
 import { shallow } from "zustand/shallow"
-import notFoundImg from "../assets/NotFoundImg.png"
-
 interface Props {
   pokemonFromList?: SinglePokemon
-  pokemonFromSearch?: Pokemon
 }
 
-export const PokemonCard = ({ pokemonFromList, pokemonFromSearch }: Props) => {
+export const PokemonCard = ({ pokemonFromList }: Props) => {
   const { classes } = useStyles()
-
-  const [pokemonReceived, setPokemonReceived] = useState<Pokemon>()
-
   // modalStore
   const { setIsActive, setSelectedPokemon } = usePokemonModalStore(
     (state) => ({
@@ -26,57 +17,23 @@ export const PokemonCard = ({ pokemonFromList, pokemonFromSearch }: Props) => {
     shallow
   )
 
-  useEffect(() => {
-    if (pokemonFromList) {
-      getAPokemon(pokemonFromList.url)
-        .then((res) => {
-          setPokemonReceived(res)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    }
-    if (pokemonFromSearch) {
-      setPokemonReceived(pokemonFromSearch)
-    }
-  }, [pokemonFromList, pokemonFromSearch])
-
   return (
     <>
       <Card
-        onClick={() => {
-          setIsActive(true)
-          setSelectedPokemon(pokemonReceived as Pokemon)
-        }}
+        // onClick={() => {
+        //   setIsActive(true)
+        //   setSelectedPokemon(pokemonReceived as Pokemon)
+        // }}
         className={classes.card}
         shadow="md"
         radius="md"
       >
-        <Card.Section>
-          <Image
-            src={pokemonReceived?.sprites?.front_default ?? notFoundImg}
-            alt={pokemonReceived?.name}
-            className={classes.imageSection}
-          />
-        </Card.Section>
-
         <Card.Section className={classes.footer}>
           <Group mt="xl">
             <Text fz="lg" fw={700} className={classes.title}>
-              {pokemonReceived?.name}
+              {pokemonFromList?.name}
             </Text>
           </Group>
-          <Text>
-            <Text span fw={700} inherit>
-              Types:{" "}
-            </Text>
-            {pokemonReceived?.types.map((item, index, array) => {
-              if (index === array.length - 1) {
-                return item.type.name
-              }
-              return item.type.name + ", "
-            })}
-          </Text>
         </Card.Section>
       </Card>
     </>
