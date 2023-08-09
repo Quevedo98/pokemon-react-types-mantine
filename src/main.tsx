@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client"
 import App from "./App.tsx"
 import "./index.css"
 import { MantineProvider } from "@mantine/core"
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query"
 
 const queryClient = new QueryClient()
@@ -15,6 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       theme={{ colorScheme: "dark" }}
     >
       <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools />
         <App />
       </QueryClientProvider>
     </MantineProvider>
