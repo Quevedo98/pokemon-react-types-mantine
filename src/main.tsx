@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <MantineProvider
       withGlobalStyles
       withNormalizeCSS
-      theme={{ colorScheme: "dark" }}
+      theme={{ colorScheme: "light" }}
     >
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools />

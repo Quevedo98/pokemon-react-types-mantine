@@ -1,8 +1,9 @@
-import { Flex, Grid, Pagination, Loader, Text, Alert } from "@mantine/core"
+import { Flex, Grid, Pagination, Alert } from "@mantine/core"
 import { AllPokemonResponse } from "../interfaces/types"
 import { PokemonCard } from "./PokemonCard"
 import { useState } from "react"
 import { PokemonModal } from "./PokemonModal"
+import { GridSkeleton } from "./GridSkeleton"
 
 interface Props {
   isLoading: boolean
@@ -35,10 +36,7 @@ export const MainTable = ({
         ))}
         {isLoading && (
           <>
-            <Flex mx={"auto"} gap={30}>
-              <Loader />
-              <Text>Loading...</Text>
-            </Flex>
+            <GridSkeleton />
           </>
         )}
         {isError && (

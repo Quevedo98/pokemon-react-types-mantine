@@ -3,6 +3,7 @@ import { usePokemonModalStore } from "../store/pokemonModal.store"
 import { shallow } from "zustand/shallow"
 import notFoundImg from "../assets/NotFoundImg.png"
 import { usePokemon } from "../hooks/usePokemon"
+import { ModalSkeleton } from "./ModalSkeleton"
 
 interface Props {
   pokemonName: string
@@ -18,7 +19,7 @@ export const PokemonModal = ({ pokemonName }: Props) => {
   )
 
   const {
-    pokemonQuery: { data },
+    pokemonQuery: { data, isLoading },
   } = usePokemon(pokemonName)
 
   return (
@@ -33,30 +34,28 @@ export const PokemonModal = ({ pokemonName }: Props) => {
       }}
     >
       <Container>
-        <Flex justify={"center"}>
-          <Image
-            src={data?.sprites?.front_default ?? notFoundImg}
-            alt={data?.name}
-            width={200}
-            height={"auto"}
-          />
-        </Flex>
-        <Stack spacing={6} mt={40}>
-          <Text>
-            <Text span fw={700} c={"light"}>
-              {" "}
-              Id:{" "}
-            </Text>
-            {data?.id}
-          </Text>
-          <Text>
-            <Text span fw={700} c={"light"}>
-              {" "}
-              Name:{" "}
-            </Text>
-            {data?.name}
-          </Text>
-        </Stack>
+        {data && (
+          <>
+            <Flex justify={"center"}>
+              <Image
+                src={data?.sprites?.front_default ?? notFoundImg}
+                alt={data?.name}
+                width={200}
+                height={"auto"}
+              />
+            </Flex>
+            <Stack spacing={6} mt={40}>
+              <Text>
+                <Text span fw={700} c={"light"}>
+                  {" "}
+                  Name:{" "}
+                </Text>
+                {data?.name}
+              </Text>
+            </Stack>
+          </>
+        )}
+        {isLoading && <ModalSkeleton />}
       </Container>
     </Modal>
   )
