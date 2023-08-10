@@ -20,7 +20,7 @@ export const getAllPokemon = async (page: number) => {
   }
 }
 
-export const getAPokemonByNameAndId = async (name: any) => {
+export const getAPokemonByName = async (name: any) => {
   try {
     const request = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
     const response = await request.json()
