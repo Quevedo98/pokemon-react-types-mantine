@@ -3,16 +3,16 @@ import { SinglePokemon } from "../interfaces/types"
 import { usePokemonModalStore } from "../store/pokemonModal.store"
 import { shallow } from "zustand/shallow"
 interface Props {
-  pokemonFromList?: SinglePokemon
+  pokemonFromList: SinglePokemon
+  setSelectedPokemon: React.Dispatch<React.SetStateAction<string>>
 }
 
-export const PokemonCard = ({ pokemonFromList }: Props) => {
+export const PokemonCard = ({ pokemonFromList, setSelectedPokemon }: Props) => {
   const { classes } = useStyles()
   // modalStore
-  const { setIsActive, setSelectedPokemon } = usePokemonModalStore(
+  const { setIsActive } = usePokemonModalStore(
     (state) => ({
       setIsActive: state.setIsActive,
-      setSelectedPokemon: state.setSelectedPokemon,
     }),
     shallow
   )
@@ -20,10 +20,10 @@ export const PokemonCard = ({ pokemonFromList }: Props) => {
   return (
     <>
       <Card
-        // onClick={() => {
-        //   setIsActive(true)
-        //   setSelectedPokemon(pokemonReceived as Pokemon)
-        // }}
+        onClick={() => {
+          setIsActive(true)
+          setSelectedPokemon(pokemonFromList.name)
+        }}
         className={classes.card}
         shadow="md"
         radius="md"

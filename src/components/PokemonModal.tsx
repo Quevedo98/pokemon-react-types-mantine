@@ -2,16 +2,24 @@ import { Container, Flex, Image, Modal, Stack, Text } from "@mantine/core"
 import { usePokemonModalStore } from "../store/pokemonModal.store"
 import { shallow } from "zustand/shallow"
 import notFoundImg from "../assets/NotFoundImg.png"
+import { usePokemon } from "../hooks/usePokemon"
 
-export const PokemonModal = () => {
-  const { setIsActive, isActive, selectedPokemon } = usePokemonModalStore(
+interface Props {
+  pokemonName: string
+}
+
+export const PokemonModal = ({ pokemonName }: Props) => {
+  const { setIsActive, isActive } = usePokemonModalStore(
     (state) => ({
       setIsActive: state.setIsActive,
       isActive: state.isActive,
-      selectedPokemon: state.selectedPokemon,
     }),
     shallow
   )
+
+  const {
+    pokemonQuery: { data },
+  } = usePokemon(pokemonName)
 
   return (
     <Modal
@@ -27,8 +35,8 @@ export const PokemonModal = () => {
       <Container>
         <Flex justify={"center"}>
           <Image
-            src={selectedPokemon?.sprites?.front_default ?? notFoundImg}
-            alt={selectedPokemon?.name}
+            src={data?.sprites?.front_default ?? notFoundImg}
+            alt={data?.name}
             width={200}
             height={"auto"}
           />
@@ -39,40 +47,14 @@ export const PokemonModal = () => {
               {" "}
               Id:{" "}
             </Text>
-            {selectedPokemon.id}
+            {data?.id}
           </Text>
           <Text>
             <Text span fw={700} c={"light"}>
               {" "}
               Name:{" "}
             </Text>
-            {selectedPokemon.name}
-          </Text>
-          <Text>
-            <Text span fw={700} c={"light"}>
-              {" "}
-              Abilities:{" "}
-            </Text>
-            {selectedPokemon.abilities?.map((ability, index, array) => {
-              if (index === array.length - 1) {
-                return ability.ability.name
-              }
-              return `${ability.ability.name}, `
-            })}
-          </Text>
-          <Text>
-            <Text span fw={700} c={"light"}>
-              {" "}
-              Height:{" "}
-            </Text>
-            {selectedPokemon.height}
-          </Text>
-          <Text>
-            <Text span fw={700} c={"light"}>
-              {" "}
-              Order:{" "}
-            </Text>
-            {selectedPokemon.order}
+            {data?.name}
           </Text>
         </Stack>
       </Container>

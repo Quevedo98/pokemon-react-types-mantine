@@ -1,6 +1,8 @@
 import { Flex, Grid, Pagination, Loader, Text, Alert } from "@mantine/core"
 import { AllPokemonResponse } from "../interfaces/types"
 import { PokemonCard } from "./PokemonCard"
+import { useState } from "react"
+import { PokemonModal } from "./PokemonModal"
 
 interface Props {
   isLoading: boolean
@@ -17,12 +19,18 @@ export const MainTable = ({
   currentPage,
   setCurrentPage,
 }: Props) => {
+  const [selectedPokemon, setSelectedPokemon] = useState<string>("")
+
   return (
     <>
+      <PokemonModal pokemonName={selectedPokemon} />
       <Grid gutter={30} my={{ base: 50 }}>
         {data?.results.map((pokemon) => (
           <Grid.Col xs={6} sm={4} md={3} key={pokemon.name}>
-            <PokemonCard pokemonFromList={pokemon} />
+            <PokemonCard
+              setSelectedPokemon={setSelectedPokemon}
+              pokemonFromList={pokemon}
+            />
           </Grid.Col>
         ))}
         {isLoading && (
