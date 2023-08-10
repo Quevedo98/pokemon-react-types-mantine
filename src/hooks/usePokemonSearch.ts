@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { getAPokemonByName } from "../services/Pokemon"
+import { getAPokemonByName } from "../services/pokemon"
 import { Pokemon } from "../interfaces/pokemon-full"
 
 export const usePokemonSearch = (name: string) => {
@@ -9,9 +9,9 @@ export const usePokemonSearch = (name: string) => {
     {
       refetchOnWindowFocus: false,
       enabled: name !== "",
+      retry: 1,
     }
   )
-
   return {
     pokemonSearchQuery,
   }

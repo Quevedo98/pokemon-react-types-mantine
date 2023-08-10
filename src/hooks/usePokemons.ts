@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { getAllPokemon } from "../services/Pokemon"
+import { getAllPokemon } from "../services/pokemon"
 import { AllPokemonResponse } from "../interfaces/types"
 
 export const usePokemons = (page: number) => {
@@ -8,6 +8,7 @@ export const usePokemons = (page: number) => {
     async () => await getAllPokemon(page),
     {
       refetchOnWindowFocus: false,
+      keepPreviousData: true,
     }
   )
 

@@ -17,10 +17,6 @@ export const SearchForm = ({ setSearch }: Props) => {
             }}
           />
         </Grid.Col>
-        <Grid.Col
-          display={"flex"}
-          style={{ alignItems: "center", justifyContent: "center" }}
-        ></Grid.Col>
       </Grid>
     </form>
   )
