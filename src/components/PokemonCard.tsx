@@ -1,9 +1,9 @@
 import { Card, Group, Text, createStyles, rem } from "@mantine/core"
-import { SinglePokemon } from "../interfaces/types"
+// import { SinglePokemon } from "../interfaces/types"
 import { usePokemonModalStore } from "../store/pokemonModal.store"
 import { shallow } from "zustand/shallow"
 interface Props {
-  pokemonFromList: SinglePokemon
+  pokemonFromList: string
   setSelectedPokemon: React.Dispatch<React.SetStateAction<string>>
 }
 
@@ -22,7 +22,7 @@ export const PokemonCard = ({ pokemonFromList, setSelectedPokemon }: Props) => {
       <Card
         onClick={() => {
           setIsActive(true)
-          setSelectedPokemon(pokemonFromList.name)
+          setSelectedPokemon(pokemonFromList)
         }}
         className={classes.card}
         shadow="md"
@@ -31,7 +31,7 @@ export const PokemonCard = ({ pokemonFromList, setSelectedPokemon }: Props) => {
         <Card.Section className={classes.footer}>
           <Group mt="xl">
             <Text fz="lg" fw={700} className={classes.title}>
-              {pokemonFromList?.name}
+              {pokemonFromList}
             </Text>
           </Group>
         </Card.Section>

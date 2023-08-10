@@ -26,19 +26,26 @@ export const PokemonModal = ({ pokemonName }: Props) => {
     <Modal
       opened={isActive}
       onClose={() => setIsActive(false)}
-      title="Pokemon Detail"
+      title="Pokemon details"
       styles={{
         title: {
           fontWeight: 700,
         },
       }}
+      centered
+      size="md"
+      radius={10}
+      padding={25}
     >
       <Container>
         {data && (
           <>
             <Flex justify={"center"}>
               <Image
-                src={data?.sprites?.front_default ?? notFoundImg}
+                src={
+                  data?.sprites?.other?.["official-artwork"]?.front_default ??
+                  notFoundImg
+                }
                 alt={data?.name}
                 width={200}
                 height={"auto"}
@@ -51,6 +58,13 @@ export const PokemonModal = ({ pokemonName }: Props) => {
                   Name:{" "}
                 </Text>
                 {data?.name}
+              </Text>
+              <Text>
+                <Text span fw={700} c={"light"}>
+                  {" "}
+                  Types:{" "}
+                </Text>
+                {data?.types?.map((item) => item.type.name).join(", ")}
               </Text>
             </Stack>
           </>
