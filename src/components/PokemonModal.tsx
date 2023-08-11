@@ -48,7 +48,7 @@ export const PokemonModal = ({ pokemonName }: Props) => {
                 }
                 alt={data?.name}
                 width={200}
-                height={"auto"}
+                height={200}
               />
             </Flex>
             <Stack spacing={6} mt={40}>

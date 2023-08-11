@@ -1,4 +1,5 @@
 import { Grid, TextInput } from "@mantine/core"
+import { AiOutlineSearch } from "react-icons/ai"
 
 interface Props {
   setSearch: React.Dispatch<React.SetStateAction<string>>
@@ -15,6 +16,9 @@ export const SearchForm = ({ setSearch }: Props) => {
             onChange={(e) => {
               setSearch(e.currentTarget.value)
             }}
+            size="lg"
+            radius={12}
+            icon={<AiOutlineSearch />}
           />
         </Grid.Col>
       </Grid>

@@ -1,4 +1,5 @@
 import { Alert, Flex } from "@mantine/core"
+import { FiAlertCircle } from "react-icons/fi"
 
 interface Props {
   message: string
@@ -7,7 +8,7 @@ interface Props {
 export const ErrorAlert = ({ message }: Props) => {
   return (
     <Flex mx={"auto"}>
-      <Alert title="Oops!" color="red">
+      <Alert icon={<FiAlertCircle />} title="Oops!" color="red">
         {message}
       </Alert>
     </Flex>
