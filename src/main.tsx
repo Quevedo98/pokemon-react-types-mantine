@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       theme={{ colorScheme: "light" }}
     >
       <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools />
+        <ReactQueryDevtools initialIsOpen={false} />
         <App />
       </QueryClientProvider>
     </MantineProvider>

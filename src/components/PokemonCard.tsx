@@ -1,5 +1,4 @@
 import { Card, Group, Text, createStyles } from "@mantine/core"
-// import { SinglePokemon } from "../interfaces/types"
 import { usePokemonModalStore } from "../store/pokemonModal.store"
 import { shallow } from "zustand/shallow"
 interface Props {
@@ -44,6 +43,11 @@ export const PokemonCard = ({ pokemonFromList, setSelectedPokemon }: Props) => {
 const useStyles = createStyles((theme) => ({
   card: {
     cursor: "pointer",
+    transition: "box-shadow 150ms ease, transform 100ms ease",
+    "&:hover": {
+      boxShadow: theme.shadows.md,
+      transform: "scale(1.06)",
+    },
   },
   footer: {
     display: "flex",
