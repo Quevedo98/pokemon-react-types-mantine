@@ -1,10 +1,11 @@
 import { usePokemons } from "../../hooks/usePokemons"
 import { useState } from "react"
 import { PokemonCard } from "../PokemonCard"
-import { Alert, Flex, Grid, Pagination } from "@mantine/core"
+import { Flex, Grid, Pagination } from "@mantine/core"
 import { GridSkeleton } from "../GridSkeleton"
 import { UseQueryResult } from "@tanstack/react-query"
 import { Pokemon } from "../../interfaces/pokemon-full"
+import { ErrorAlert } from "../shared/errorAlert"
 
 interface Props {
   searchQuery: UseQueryResult<Pokemon, unknown>
@@ -25,7 +26,7 @@ export const PaginatedPokemons = ({
 
   return (
     <>
-      <Grid gutter={30} my={{ base: 50 }}>
+      <Grid gutter={30}>
         {isShowingData &&
           pokemonListQuery.data?.results?.map((pokemon) => (
             <Grid.Col xs={6} sm={4} md={3} key={`${pokemon?.name} 2`}>
@@ -37,16 +38,12 @@ export const PaginatedPokemons = ({
           ))}
         {pokemonListQuery?.isLoading && <GridSkeleton />}
         {pokemonListQuery?.isError && (
-          <Flex mx={"auto"} gap={30}>
-            <Alert title="Oops!" color="red">
-              An error occurred, please try again later.
-            </Alert>
-          </Flex>
+          <ErrorAlert message="An error occurred, please try again later." />
         )}
       </Grid>
       {/* Pagination component from Mantine */}
       {isShowingData && pokemonListQuery.data && (
-        <Flex justify={"center"} mb={{ base: 50 }}>
+        <Flex justify={"center"} pt={{ base: 50 }}>
           <Pagination
             value={currentPage}
             onChange={setCurrentPage}

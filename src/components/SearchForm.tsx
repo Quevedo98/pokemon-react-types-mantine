@@ -7,10 +7,10 @@ interface Props {
 export const SearchForm = ({ setSearch }: Props) => {
   return (
     <form>
-      <Grid maw={{ base: 500 }} mt={{ base: 40 }} mx={"auto"}>
+      <Grid maw={{ base: 500 }} mt={{ base: 25 }} mx={"auto"}>
         <Grid.Col>
           <TextInput
-            label="Enter a pokémon name"
+            label="Search for a Pokémon by name"
             placeholder="bulbasaur ..."
             onChange={(e) => {
               setSearch(e.currentTarget.value)

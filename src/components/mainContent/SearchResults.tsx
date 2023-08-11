@@ -1,8 +1,9 @@
-import { Alert, Flex, Grid } from "@mantine/core"
+import { Grid } from "@mantine/core"
 import { PokemonCard } from "../PokemonCard"
 import { GridSkeleton } from "../GridSkeleton"
 import { UseQueryResult } from "@tanstack/react-query"
 import { Pokemon } from "../../interfaces/pokemon-full"
+import { ErrorAlert } from "../shared/errorAlert"
 
 interface Props {
   searchQuery: UseQueryResult<Pokemon, unknown>
@@ -23,13 +24,7 @@ export const SearchResults = ({ searchQuery, setSelectedPokemon }: Props) => {
           </Grid.Col>
         )}
         {searchQuery.isError && (
-          <>
-            <Flex mx={"auto"} gap={30}>
-              <Alert title="Oops!" color="red">
-                We haven't found any pokémon with that name.
-              </Alert>
-            </Flex>
-          </>
+          <ErrorAlert message="We haven't found any pokémon with that name." />
         )}
         {searchQuery.isInitialLoading && (
           <>

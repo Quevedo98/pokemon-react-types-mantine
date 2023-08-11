@@ -9,7 +9,6 @@ interface Props {
   search: string
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const MainTable = ({ search }: Props) => {
   const [selectedPokemon, setSelectedPokemon] = useState<string>("")
   const debaunceSearch = useDebounce(search, 500)
@@ -24,7 +23,7 @@ export const MainTable = ({ search }: Props) => {
         searchQuery={pokemonSearchQuery}
         setSelectedPokemon={setSelectedPokemon}
       />
-
+      {/* If there is no search, show the paginated list of pokemons */}
       <PaginatedPokemons
         searchQuery={pokemonSearchQuery}
         setSelectedPokemon={setSelectedPokemon}
