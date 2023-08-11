@@ -1,7 +1,7 @@
 import { usePokemons } from "../../hooks/usePokemons"
 import { useState } from "react"
 import { PokemonCard } from "./PokemonCard"
-import { Flex, Grid, Pagination } from "@mantine/core"
+import { Container, Flex, Grid, Pagination } from "@mantine/core"
 import { GridSkeleton } from "../shared/GridSkeleton"
 import { UseQueryResult } from "@tanstack/react-query"
 import { Pokemon } from "../../interfaces/pokemon-full"
@@ -26,32 +26,34 @@ export const PaginatedPokemons = ({
 
   return (
     <>
-      <Grid gutter={42}>
-        {isShowingData &&
-          pokemonListQuery.data?.results?.map((pokemon) => (
-            <Grid.Col xs={6} sm={4} md={3} key={`${pokemon?.name} 2`}>
-              <PokemonCard
-                setSelectedPokemon={setSelectedPokemon}
-                pokemonFromList={pokemon?.name}
-              />
-            </Grid.Col>
-          ))}
-        {pokemonListQuery?.isLoading && <GridSkeleton />}
-        {pokemonListQuery?.isError && (
-          <ErrorAlert message="An error occurred, please try again later." />
+      <Container maw={1400}>
+        <Grid gutter={42}>
+          {isShowingData &&
+            pokemonListQuery.data?.results?.map((pokemon) => (
+              <Grid.Col xs={6} sm={4} md={3} key={`${pokemon?.name} 2`}>
+                <PokemonCard
+                  setSelectedPokemon={setSelectedPokemon}
+                  pokemonFromList={pokemon?.name}
+                />
+              </Grid.Col>
+            ))}
+          {pokemonListQuery?.isLoading && <GridSkeleton />}
+          {pokemonListQuery?.isError && (
+            <ErrorAlert message="An error occurred, please try again later." />
+          )}
+        </Grid>
+        {/* Pagination component from Mantine */}
+        {isShowingData && pokemonListQuery.data && (
+          <Flex justify={"center"} py={{ base: 50 }}>
+            <Pagination
+              value={currentPage}
+              onChange={setCurrentPage}
+              total={Math.ceil(pokemonListQuery?.data?.count / 20)}
+              color="red"
+            />
+          </Flex>
         )}
-      </Grid>
-      {/* Pagination component from Mantine */}
-      {isShowingData && pokemonListQuery.data && (
-        <Flex justify={"center"} pt={{ base: 60 }}>
-          <Pagination
-            value={currentPage}
-            onChange={setCurrentPage}
-            total={Math.ceil(pokemonListQuery?.data?.count / 20)}
-            color="red"
-          />
-        </Flex>
-      )}
+      </Container>
     </>
   )
 }

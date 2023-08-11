@@ -1,9 +1,18 @@
-import { Container, Flex, Image, Modal, Stack, Text } from "@mantine/core"
+import {
+  Badge,
+  Container,
+  Flex,
+  Image,
+  Modal,
+  Stack,
+  Text,
+} from "@mantine/core"
 import { usePokemonModalStore } from "../../store/pokemonModal.store"
 import { shallow } from "zustand/shallow"
 import notFoundImg from "../../assets/NotFoundImg.png"
 import { usePokemon } from "../../hooks/usePokemon"
 import { ModalSkeleton } from "./ModalSkeleton"
+import { getTypeColor } from "../../helpers/getTypeColor"
 
 interface Props {
   pokemonName: string
@@ -64,7 +73,16 @@ export const PokemonModal = ({ pokemonName }: Props) => {
                   {" "}
                   Types:{" "}
                 </Text>
-                {data?.types?.map((item) => item.type.name).join(", ")}
+                {data?.types?.map((item, index) => (
+                  <Badge
+                    c={"#fff"}
+                    key={index}
+                    bg={getTypeColor(item.type.name)}
+                    mr={3}
+                  >
+                    {item.type.name}
+                  </Badge>
+                ))}
               </Text>
             </Stack>
           </>

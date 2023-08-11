@@ -13,7 +13,7 @@ interface Props {
 export const SearchResults = ({ searchQuery, setSelectedPokemon }: Props) => {
   return (
     <>
-      <Grid gutter={30} my={{ base: 50 }}>
+      <Grid gutter={30} my={{ base: 28 }}>
         {searchQuery.data && (
           <Grid.Col xs={6} sm={4} md={3} key={`${searchQuery?.data?.name}`}>
             <PokemonCard
