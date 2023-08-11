@@ -1,4 +1,4 @@
-import { Card, Group, Text, createStyles, rem } from "@mantine/core"
+import { Card, Group, Text, createStyles } from "@mantine/core"
 // import { SinglePokemon } from "../interfaces/types"
 import { usePokemonModalStore } from "../store/pokemonModal.store"
 import { shallow } from "zustand/shallow"
@@ -29,8 +29,8 @@ export const PokemonCard = ({ pokemonFromList, setSelectedPokemon }: Props) => {
         radius="md"
       >
         <Card.Section className={classes.footer}>
-          <Group mt="xl">
-            <Text fz="lg" fw={700} className={classes.title}>
+          <Group>
+            <Text fz={{ base: 18, md: 20 }} fw={700} className={classes.title}>
               {pokemonFromList}
             </Text>
           </Group>
@@ -43,32 +43,16 @@ export const PokemonCard = ({ pokemonFromList, setSelectedPokemon }: Props) => {
 //Styles
 const useStyles = createStyles((theme) => ({
   card: {
-    minHeight: " 100%",
     cursor: "pointer",
-    border: `${rem(1)} solid ${
-      theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[1]
-    }`,
   },
   footer: {
     display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    padding: `${theme.spacing.sm} ${theme.spacing.lg}`,
-    borderTop: `${rem(1)} solid ${
-      theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[2]
-    }`,
+    flexDirection: "row",
+    justifyContent: "center",
+    padding: `${theme.spacing.md} ${theme.spacing.lg}`,
   },
 
   title: {
     textTransform: "capitalize",
-  },
-  imageSection: {
-    margin: "auto",
-    padding: theme.spacing.md,
-    display: "flex",
-    maxWidth: 140,
-    height: 200,
-    alignItems: "center",
-    justifyContent: "center",
   },
 }))

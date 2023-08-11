@@ -1,4 +1,8 @@
 #root {
-  max-width: 1400px;
+  max-width: '100%';
   margin: 0 auto;
+}
+
+#body {
+  background-color: #f1f3f6;
 }

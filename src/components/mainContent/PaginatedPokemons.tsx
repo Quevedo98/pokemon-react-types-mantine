@@ -26,10 +26,10 @@ export const PaginatedPokemons = ({
 
   return (
     <>
-      <Grid gutter={30}>
+      <Grid gutter={42}>
         {isShowingData &&
           pokemonListQuery.data?.results?.map((pokemon) => (
-            <Grid.Col xs={4} sm={3} md={3} key={`${pokemon?.name} 2`}>
+            <Grid.Col xs={6} sm={4} md={3} key={`${pokemon?.name} 2`}>
               <PokemonCard
                 setSelectedPokemon={setSelectedPokemon}
                 pokemonFromList={pokemon?.name}
@@ -43,11 +43,12 @@ export const PaginatedPokemons = ({
       </Grid>
       {/* Pagination component from Mantine */}
       {isShowingData && pokemonListQuery.data && (
-        <Flex justify={"center"} pt={{ base: 50 }}>
+        <Flex justify={"center"} pt={{ base: 60 }}>
           <Pagination
             value={currentPage}
             onChange={setCurrentPage}
-            total={Math.ceil(pokemonListQuery?.data?.count / 12)}
+            total={Math.ceil(pokemonListQuery?.data?.count / 20)}
+            color="red"
           />
         </Flex>
       )}

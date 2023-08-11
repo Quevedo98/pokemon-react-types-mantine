@@ -1,7 +1,7 @@
 export const getAllPokemon = async (page: number) => {
   try {
     const request = await fetch(
-      `https://pokeapi.co/api/v2/pokemon?limit=12&offset=${(page - 1) * 12}`
+      `https://pokeapi.co/api/v2/pokemon?limit=20&offset=${(page - 1) * 20}`
     )
     const response = await request.json()
     return response

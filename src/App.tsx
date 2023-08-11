@@ -1,5 +1,6 @@
+import "./index.css"
 import "./App.css"
-import { Container, Title } from "@mantine/core"
+import { Box, Container, Image, Title } from "@mantine/core"
 import { useState } from "react"
 import { SearchForm } from "./components/SearchForm"
 import { MainTable } from "./components/MainTable"
@@ -9,11 +10,14 @@ function App() {
 
   return (
     <>
-      <Container mt={30} fluid>
+      <Container mt={30} maw={1400}>
         <header>
-          <Title order={1} align="center">
-            Pokémon App
-          </Title>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Title order={1} align="center">
+              Pokémon App
+            </Title>
+            <Image src={"/pokeball.svg"} width={40} />
+          </Box>
           <SearchForm setSearch={setSearch} />
         </header>
         <main>

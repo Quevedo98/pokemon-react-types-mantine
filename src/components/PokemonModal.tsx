@@ -26,7 +26,7 @@ export const PokemonModal = ({ pokemonName }: Props) => {
     <Modal
       opened={isActive}
       onClose={() => setIsActive(false)}
-      title="Pokemon details"
+      title="Pokémon details"
       styles={{
         title: {
           fontWeight: 700,
