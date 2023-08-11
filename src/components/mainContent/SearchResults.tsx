@@ -3,7 +3,7 @@ import { PokemonCard } from "../PokemonCard"
 import { GridSkeleton } from "../GridSkeleton"
 import { UseQueryResult } from "@tanstack/react-query"
 import { Pokemon } from "../../interfaces/pokemon-full"
-import { ErrorAlert } from "../shared/errorAlert"
+import { ErrorAlert } from "../shared/ErrorAlert"
 
 interface Props {
   searchQuery: UseQueryResult<Pokemon, unknown>
@@ -14,7 +14,6 @@ export const SearchResults = ({ searchQuery, setSelectedPokemon }: Props) => {
   return (
     <>
       <Grid gutter={30} my={{ base: 50 }}>
-        {/* If there is a search, show the results of the search */}
         {searchQuery.data && (
           <Grid.Col xs={6} sm={4} md={3} key={`${searchQuery?.data?.name}`}>
             <PokemonCard
