@@ -1,5 +1,5 @@
 import { Card, Group, Text, createStyles } from "@mantine/core"
-import { usePokemonModalStore } from "../store/pokemonModal.store"
+import { usePokemonModalStore } from "../../store/pokemonModal.store"
 import { shallow } from "zustand/shallow"
 interface Props {
   pokemonFromList: string

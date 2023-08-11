@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { PokemonModal } from "./PokemonModal"
+import { PokemonModal } from "./mainContent/PokemonModal"
 import { usePokemonSearch } from "../hooks/usePokemonSearch"
 import { useDebounce } from "../hooks/useDebounce"
 import { PaginatedPokemons } from "./mainContent/PaginatedPokemons"
@@ -9,7 +9,7 @@ interface Props {
   search: string
 }
 
-export const MainTable = ({ search }: Props) => {
+export const MainContent = ({ search }: Props) => {
   const [selectedPokemon, setSelectedPokemon] = useState<string>("")
   const debaunceSearch = useDebounce(search, 500)
   const { pokemonSearchQuery } = usePokemonSearch(debaunceSearch)

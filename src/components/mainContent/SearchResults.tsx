@@ -1,6 +1,6 @@
 import { Grid } from "@mantine/core"
-import { PokemonCard } from "../PokemonCard"
-import { GridSkeleton } from "../GridSkeleton"
+import { PokemonCard } from "./PokemonCard"
+import { GridSkeleton } from "../shared/GridSkeleton"
 import { UseQueryResult } from "@tanstack/react-query"
 import { Pokemon } from "../../interfaces/pokemon-full"
 import { ErrorAlert } from "../shared/ErrorAlert"

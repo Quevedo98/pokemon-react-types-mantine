@@ -1,8 +1,8 @@
 import { Container, Flex, Image, Modal, Stack, Text } from "@mantine/core"
-import { usePokemonModalStore } from "../store/pokemonModal.store"
+import { usePokemonModalStore } from "../../store/pokemonModal.store"
 import { shallow } from "zustand/shallow"
-import notFoundImg from "../assets/NotFoundImg.png"
-import { usePokemon } from "../hooks/usePokemon"
+import notFoundImg from "../../assets/NotFoundImg.png"
+import { usePokemon } from "../../hooks/usePokemon"
 import { ModalSkeleton } from "./ModalSkeleton"
 
 interface Props {

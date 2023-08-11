@@ -2,8 +2,8 @@ import "./index.css"
 import "./App.css"
 import { Box, Container, Image, Title } from "@mantine/core"
 import { useState } from "react"
-import { SearchForm } from "./components/SearchForm"
-import { MainTable } from "./components/MainTable"
+import { SearchForm } from "./components/mainContent/SearchForm"
+import { MainContent } from "./components/MainContent"
 
 function App() {
   const [search, setSearch] = useState<string>("")
@@ -21,7 +21,7 @@ function App() {
           <SearchForm setSearch={setSearch} />
         </header>
         <main>
-          <MainTable search={search} />
+          <MainContent search={search} />
         </main>
       </Container>
     </>
