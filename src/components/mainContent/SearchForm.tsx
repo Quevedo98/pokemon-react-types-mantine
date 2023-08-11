@@ -14,7 +14,7 @@ export const SearchForm = ({ setSearch }: Props) => {
             label="Search for a Pokémon by name"
             placeholder="bulbasaur ..."
             onChange={(e) => {
-              setSearch(e.currentTarget.value)
+              setSearch(e.currentTarget.value.toLowerCase())
             }}
             size="lg"
             radius={12}
